@@ -83,7 +83,7 @@ def findClickPositions(needle_img_path, haystack_img, threshold, debug_mode=None
     # print(locations)
 
     # You'll notice a lot of overlapping rectangles get drawn. We can eliminate those redundant
-    # locations by using groupRectangles().
+    # locations by using groupRectangles(). 
     # First we need to create the list of [x, y, w, h] rectangles
     rectangles = []
     for loc in locations:
@@ -174,6 +174,13 @@ def urielPass(Uriel,missingWindowHeight):
     randomSelect = random.choice(urielPossibleCords)
     click(randomSelect[0],randomSelect[1])                            
     time.sleep(1)
+
+def look_around():
+    for _ in range(10):
+        x = random.randint(0, 1920)
+        y = random.randint(0, 1080)
+        click(x, y)
+        time.sleep(0.5)
     
 def Start():
     char = "char.jpg"
@@ -273,7 +280,7 @@ def Start():
                     stoneY = StonePoints[0][1]+missingWindowHeight
                     click(stoneX,stoneY)
                 else:
-                    click(500,500)
+                    look_around()
 
                 if(len(playerLocation)==0):   
                     print('Cant find Character')
@@ -310,15 +317,10 @@ def Test():
             i+=1
 
         except:
+            look_around()
             print("Cant find stone or character")
 
 
 # ListWindowNames()
 # Start()
 Test()
-
-
-
-
-
-
