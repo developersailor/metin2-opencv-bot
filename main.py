@@ -1,15 +1,13 @@
 from math import pi
 from operator import truediv
 from string import printable
-from windowcapture import WindowCapture
 import cv2 as cv
 import numpy as np
 import os
 import os.path
-import win32api, win32con
+import pyautogui
 from numpy.lib.shape_base import tile
 from PIL import ImageGrab
-from windowcapture import WindowCapture
 import keyboard
 import time
 from math import sqrt
@@ -52,10 +50,7 @@ def ListWindowNames():
 
 
 def click(x,y):
-    win32api.SetCursorPos((x,y))
-    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0)
-    time.sleep(0.02) #This pauses the script for 0.02 seconds
-    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+    pyautogui.click(x, y)
 
 
 def findClickPositions(needle_img_path, haystack_img, threshold, debug_mode=None):
@@ -160,7 +155,7 @@ def findCorrectStone(wincap,header,stoneTreshold):
         clearstone = stone.replace('\n','')
         stones.append(clearstone)
     for stone in stones:
-        screen = wincap.get_screenshot()
+        screen = pyautogui.screenshot()
         points = findClickPositions(stone, screen,stoneTreshold, debug_mode='points'  )
         if (len(points)>0):
             return stone
@@ -221,7 +216,7 @@ def Start():
             
             try:                
 
-                screen = wincap.get_screenshot()
+                screen = pyautogui.screenshot()
 
                 StonePoints = findClickPositions(correctStone, screen,stoneTreshold)
                 if(i%10 ==0):
@@ -231,7 +226,7 @@ def Start():
                 if(len(Uriel)>0):
                     isActive = True
                     while isActive:    
-                        screen = wincap.get_screenshot() 
+                        screen = pyautogui.screenshot() 
                         Uriel = findClickPositions(uriel, screen,urielTreshold)
                         if (len(Uriel)>0):
                             urielPass(Uriel,missingWindowHeight)                            
@@ -266,7 +261,7 @@ def Start():
                 if(len(Uriel)>0):
                     isActive = True
                     while isActive:    
-                        screen = wincap.get_screenshot() 
+                        screen = pyautogui.screenshot() 
                         Uriel = findClickPositions(uriel, screen,urielTreshold, debug_mode='rectangles')
                         if (len(Uriel)>0):
                             urielPass(Uriel,missingWindowHeight)                            
@@ -308,7 +303,7 @@ def Test():
             loop_time = time.time()
             print(fps)
 
-            screen = wincap.get_screenshot()
+            screen = pyautogui.screenshot()
 
             StonePoints = findClickPositions(correctStone, screen, stoneTreshold, debug_mode='rectangles')
             playerLocation = findClickPositions(char, screen, playerTreshold, debug_mode='points')
