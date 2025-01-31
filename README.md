@@ -12,6 +12,7 @@ Opencv matchTemplate, Win32api kullanılarak yapılmıştır. Görsel tanıma il
 3-headers.txt dosyasına main.py deki ListWindowNames fonksiyonu kullanarak yakalanacak ekranın ismini ekleyiniz. Birden fazla ekran ismi varsa alt alta ekleyiniz.<br>
 4-stone.txt dosyasına kesmek istediğiniz metinlerin ekran götüntülerinin isimlerini satır satır ekleyiniz. ( a.jpg , b.jpg gibi)<br>
 5-Başlatmak için "Start" , Test için "Test" , ekran isimleri için "listWindowNames" fonksiyonunu yorumdan çıkarınız.<br>
+6-Botun metin taşını görmediğinde çevreye bakması için `main.py` dosyasındaki `look_around` fonksiyonunu kullanarak yapılandırınız. Bu fonksiyon, ekranda rastgele tıklamalar yaparak çevreye bakmayı simüle eder. `Start` ve `Test` fonksiyonlarını güncelleyerek, metin taşı bulunamadığında `look_around` fonksiyonunu çağıracak şekilde yapılandırınız.<br>
 
 
 Kaynak:
